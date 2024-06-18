@@ -11,14 +11,12 @@ public class Main {
     public static void crearArchivo(String directorio, String fichero) {
         File carpeta = new File("src/" + directorio);
         File archivo = new File("src/" + directorio + "/" + fichero);
-        boolean worked;
         if (!carpeta.exists()) {
             if (carpeta.mkdirs()) {
                 System.out.println("Directorio creado");
-                if (!archivo.exists()) {
-                    try {
-                        boolean crearArchivo = archivo.createNewFile();
 
+                try {
+                    if (archivo.createNewFile()) {
                         ArrayList<String> lista = new ArrayList<String>();
                         lista.add("Perro");
                         lista.add("Gato");
@@ -40,11 +38,12 @@ public class Main {
                         }
 
                         bw.close();
-                    } catch (IOException e) {
-                        e.printStackTrace();
                     }
                 }
-            } else {
+                catch (IOException e) {
+                    e.printStackTrace();
+                }
+                } else {
                 System.out.println("Error al crear directorio");
             }
         } else {
