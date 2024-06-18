@@ -2,6 +2,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+@SuppressWarnings("ALL")
 public class Main {
     public static void main(String[] args) {
         crearArchivo("directorio", "fichero.txt");
@@ -17,7 +18,7 @@ public class Main {
 
                 try {
                     if (archivo.createNewFile()) {
-                        ArrayList<String> lista = new ArrayList<String>();
+                        ArrayList<String> lista = new ArrayList<>();
                         lista.add("Perro");
                         lista.add("Gato");
                         lista.add("Juan");
@@ -57,11 +58,10 @@ public class Main {
             System.out.println("El fichero ingresado no existe");
             return;
         }
-        FileReader fr = null;
         try {
-            fr = new FileReader(archivo);
+            FileReader fr = new FileReader(archivo);
             BufferedReader br = new BufferedReader(fr);
-            int repeticiones = Arrays.stream(br.lines().toArray()).filter(x -> ((String) x).equals(texto)).toArray().length;
+            int repeticiones = Arrays.stream(br.lines().toArray()).filter(x -> x.equals(texto)).toArray().length;
 
             System.out.print("cantidad de repeticiones del texto -> ");
             System.out.println(repeticiones);
